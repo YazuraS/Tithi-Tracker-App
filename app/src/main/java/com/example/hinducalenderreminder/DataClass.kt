@@ -7,8 +7,6 @@ data class PanchangResponse(
     val data: PanchangData,
 )
 
-
-
 data class TokenResponse(
     @SerializedName("access_token")
     val accessToken: String,
@@ -19,8 +17,6 @@ data class TokenResponse(
     @SerializedName("expires_in")
     val expiresIn: Int
 )
-
-
 
 data class PanchangData(
     val vaara: String,

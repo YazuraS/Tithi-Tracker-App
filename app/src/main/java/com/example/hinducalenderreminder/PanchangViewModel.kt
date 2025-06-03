@@ -1,7 +1,9 @@
 package com.example.hinducalenderreminder
 
+import android.annotation.SuppressLint
+import android.app.Application
 import android.util.Log
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -9,9 +11,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class PanchangViewModel : ViewModel() {
+class PanchangViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _panchangData = MutableStateFlow<PanchangData?>(null)
+    @SuppressLint("StaticFieldLeak")
+    private val context = getApplication<Application>().applicationContext
+
+
     val panchangData: StateFlow<PanchangData?> = _panchangData
 
     init {
@@ -23,18 +29,23 @@ class PanchangViewModel : ViewModel() {
             try {
                 val api = RetrofitClient.instance
                 Log.d("PanchangViewModel", "Fetching token...")
+                var token = TokenManager.getValidToken(context)
 
-                val tokenResponse = api.getToken(
-                    clientId = "882259b7-9c5f-4114-b86c-3b2cb6a2745e",
-                    clientSecret = "6f8gpmxxaTD9hoIA4hALKYtXsh3Y4k2D7YqlMiGT"
-                )
-                if (tokenResponse.isSuccessful) {
-                    Log.d("PanchangViewModel", "Token response: ${tokenResponse.body()}")
-                } else {
-                    Log.e("PanchangViewModel", "Failed to get token: ${tokenResponse.code()} ${tokenResponse.errorBody()?.string()}")
-                    return@launch
+                if (token == null) {
+                    val tokenResponse = api.getToken(
+                        clientId = "882259b7-9c5f-4114-b86c-3b2cb6a2745e",
+                        clientSecret = "6f8gpmxxaTD9hoIA4hALKYtXsh3Y4k2D7YqlMiGT"
+                    )
+                    if (tokenResponse.isSuccessful) {
+                        Log.d("PanchangViewModel", "Token response: ${tokenResponse.body()}")
+                        token = "Bearer ${tokenResponse.body()?.accessToken ?: return@launch}"
+                        TokenManager.saveToken(context,token,3600L)
+                    } else {
+                        Log.e("PanchangViewModel", "Failed to get token: ${tokenResponse.code()} ${tokenResponse.errorBody()?.string()}")
+                        return@launch
+                    }
                 }
-                val token = "Bearer ${tokenResponse.body()?.accessToken ?: return@launch}"
+
 
                 val currentDateTime = java.time.ZonedDateTime.now(java.time.ZoneId.of("Asia/Kolkata"))
                 val formattedDateTime = currentDateTime.format(
