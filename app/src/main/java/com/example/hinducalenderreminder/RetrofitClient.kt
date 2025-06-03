@@ -1,5 +1,6 @@
 package com.example.hinducalenderreminder
 
+import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -13,4 +14,5 @@ object RetrofitClient {
             .build()
             .create(PanchangApiService::class.java)
     }
+
 }

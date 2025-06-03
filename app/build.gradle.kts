@@ -65,6 +65,8 @@ dependencies {
     implementation(composeBom)
 
 
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.4.0")
+
     //Calendar
     implementation("com.kizitonwose.calendar:compose:2.4.0")
 
