@@ -62,56 +62,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-//    @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
-//    private fun getUserLocationAndFetchPanchang() {
-//
-//        if (ActivityCompat.checkSelfPermission(
-//                this,
-//                Manifest.permission.ACCESS_FINE_LOCATION
-//            ) != PackageManager.PERMISSION_GRANTED
-//        ) {
-//            Log.e("Panchang", "Permission still not granted")
-//            return
-//        }
-//
-//        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-//            if (location != null) {
-//                val latitude = String.format("%.2f", location.latitude).toDouble()
-//                val longitude = String.format("%.2f", location.longitude).toDouble()
-//                val year = LocalDate.now().year
-//
-//                Log.d("Location", "Lat: $latitude, Lon: $longitude")
-//
-//                lifecycleScope.launch {
-//                    val fileName = PanchangFileManager.FILE_NAME
-//
-//                    if (!PanchangFileManager.isFileAlreadySaved(applicationContext, fileName)) {
-//                        Log.d("PanchangData", "File not found, downloading...")
-//
-//                        val success = DataDownloader.downloadAndSavePanchangFile(
-//                            applicationContext,
-//                            latitude,
-//                            longitude,
-//                            year
-//                        )
-//
-//                        if (success) {
-//                            val todayData = PanchangFileManager.getTodayData(applicationContext)
-//                            Log.d("PanchangData", todayData.toString())
-//                        } else {
-//                            Log.e("PanchangData", "Download failed.")
-//                        }
-//                    } else {
-//                        Log.d("PanchangData", "File already exists, skipping download.")
-//                    }
-//                }
-//            } else {
-//                Log.e("Location", "Location is null")
-//            }
-//        }.addOnFailureListener {
-//            Log.e("Location", "Failed to get location", it)
-//        }
-//    }
 
     @RequiresPermission(allOf = [Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION])
     private fun fetchLocationAndLoadData(viewModel: PanchangViewModel) {

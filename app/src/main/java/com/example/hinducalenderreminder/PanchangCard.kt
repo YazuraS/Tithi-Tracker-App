@@ -37,19 +37,6 @@ fun PanchangCard(data: PanchangEntry) {
                     Text("Sunset: ${data.sunset}")
                     Text("Moonset: ${data.moonset}")
                 }
-//                Text("Sunrise: ${data.sunrise}")
-//                Text("Sunset: ${data.sunset}")
-//                Text("Moonrise: ${data.moonrise}")
-//                Text("Moonset: ${data.moonset}")
-
-//            Text("Tithi: ${data.tithi.firstOrNull()?.name}", style = MaterialTheme.typography.titleLarge)
-//            Text("Nakshatra: ${data.nakshatra.firstOrNull()?.name}", style = MaterialTheme.typography.bodyMedium)
-//            Text("Yoga: ${data.yoga.firstOrNull()?.name}", style = MaterialTheme.typography.bodyMedium)
-//            Text("Karana: ${data.karana.firstOrNull()?.name}", style = MaterialTheme.typography.bodyMedium)
-//            Text("Sunrise: ${ZonedDateTime.parse(data.sunrise).format(DateTimeFormatter.ofPattern("hh:mm a"))
-//            }", style = MaterialTheme.typography.bodyMedium)
-//            Text("Sunset: ${ZonedDateTime.parse(data.sunset).format(DateTimeFormatter.ofPattern("hh:mm a"))
-//            }", style = MaterialTheme.typography.bodyMedium)
         }
     }
 }
