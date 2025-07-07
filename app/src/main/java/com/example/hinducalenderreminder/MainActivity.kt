@@ -1,5 +1,6 @@
 package com.example.hinducalenderreminder
 
+import PanchangFileManager
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
@@ -10,9 +11,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresPermission
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.LaunchedEffect
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
