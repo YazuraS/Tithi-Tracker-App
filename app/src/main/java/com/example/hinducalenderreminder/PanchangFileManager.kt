@@ -20,7 +20,7 @@ object PanchangFileManager {
     fun readFromFile(context: Context): String? {
         return try {
             context.openFileInput(FILE_NAME).bufferedReader().use { it.readText() }
-        } catch (e: Exception) {
+        } catch (_: Exception) {
             null
         }
     }
