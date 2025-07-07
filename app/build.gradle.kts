@@ -50,6 +50,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:2.9.0")
     implementation("androidx.navigation:navigation-ui-ktx:2.9.0")
     implementation("androidx.compose.material3:material3-android:1.3.2")
+    implementation(libs.androidx.room.compiler)
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.6.1")
@@ -73,5 +74,16 @@ dependencies {
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+    //gson
+    implementation("com.google.code.gson:gson:2.10.1")
+
+    //location
+    implementation("com.google.android.gms:play-services-location:21.0.1")
+
+    configurations.all {
+        exclude(group = "com.intellij", module = "annotations")
+    }
+
 
 }

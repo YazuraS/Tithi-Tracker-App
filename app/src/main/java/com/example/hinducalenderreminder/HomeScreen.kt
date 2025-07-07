@@ -9,26 +9,32 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 
 
 @Composable
 fun HomeScreen(viewModel: PanchangViewModel = viewModel()) {
-    val data by viewModel.panchangData.collectAsState()
+    val todaydata by viewModel.todayPanchang.collectAsState()
 
+//    LaunchedEffect(Unit) {
+//        viewModel.loadTodayData()
+//    }
     Column(modifier = Modifier
         .fillMaxSize()
-        .padding(20.dp)) {
+        .padding(WindowInsets.safeDrawing.asPaddingValues())
+        .padding(horizontal = 25.dp, vertical = 30.dp)) {
         Text("Today's Panchang", style = MaterialTheme.typography.headlineMedium)
-        LaunchedEffect(data) {
-            Log.d("UI_CHECK", "PanchangData: $data")
-        }
+//        LaunchedEffect(data) {
+//            Log.d("UI_CHECK", "PanchangData: $data")
+//        }
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        if (data != null) {
-            PanchangCard(data!!)
+
+        if (todaydata != null) {
+            PanchangCard(todaydata!!)
         } else {
             Text("Fetching Panchang...", modifier = Modifier.padding(top = 8.dp))
         }

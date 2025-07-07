@@ -1,8 +1,10 @@
 [versions]
 kotlin = "2.0.0"
+roomCompiler = "2.7.2"
 
 
 [libraries]
+androidx-room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "roomCompiler" }
 
 [plugins]
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
