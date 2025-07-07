@@ -1,5 +1,4 @@
 [versions]
-kotlin = "2.0.0"
 roomCompiler = "2.7.2"
 
 
